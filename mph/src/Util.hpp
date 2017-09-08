@@ -95,21 +95,21 @@ public:
     static int stold(long double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
 
     template<class T, class... Args>
-    typename MakeUniqueHelper<T>::Object
+    static typename MakeUniqueHelper<T>::Object
     make_unique( Args&&... args )
     {
         return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
     }
 
     template<class T>
-    typename MakeUniqueHelper<T>::Array
+    static typename MakeUniqueHelper<T>::Array
     make_unique( std::size_t size )
     {
         return std::unique_ptr<T>(new typename std::remove_extent<T>::type[size]());
     }
 
     template<class T, class ...ARGS>
-    typename MakeUniqueHelper<T>::Invalid
+    static typename MakeUniqueHelper<T>::Invalid
     make_unique(ARGS&&...) = delete;
 
 };
