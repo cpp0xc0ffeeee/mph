@@ -10,7 +10,7 @@
 namespace mph
 {
 
-int Util::stoi(int& value, const std::string& str, std::size_t* pos, int base) noexcept
+int stoi(int& value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -28,7 +28,7 @@ int Util::stoi(int& value, const std::string& str, std::size_t* pos, int base) n
     return eCode;
 }
 
-int Util::stoi(int& value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stoi(int& value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -46,7 +46,7 @@ int Util::stoi(int& value, const std::wstring& str, std::size_t* pos, int base) 
     return eCode;
 }
 
-int Util::stol(long & value, const std::string& str, std::size_t* pos, int base) noexcept
+int stol(long & value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -64,7 +64,7 @@ int Util::stol(long & value, const std::string& str, std::size_t* pos, int base)
     return eCode;
 }
 
-int Util::stol(long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stol(long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -82,7 +82,7 @@ int Util::stol(long & value, const std::wstring& str, std::size_t* pos, int base
     return eCode;
 }
 
-int Util::stoll(long long & value, const std::string& str, std::size_t* pos, int base) noexcept
+int stoll(long long & value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -100,7 +100,7 @@ int Util::stoll(long long & value, const std::string& str, std::size_t* pos, int
     return eCode;
 }
 
-int Util::stoll(long long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stoll(long long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -118,7 +118,7 @@ int Util::stoll(long long & value, const std::wstring& str, std::size_t* pos, in
     return eCode;
 }
 
-int Util::stoui(unsigned int& value, const std::string& str, std::size_t* pos, int base) noexcept
+int stoui(unsigned int& value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     unsigned long result;
     int eCode = stoul(result, str, pos, base);
@@ -132,7 +132,7 @@ int Util::stoui(unsigned int& value, const std::string& str, std::size_t* pos, i
     return eCode;
 }
 
-int Util::stoui(unsigned int& value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stoui(unsigned int& value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     unsigned long result;
     int eCode = stoul(result, str, pos, base);
@@ -146,7 +146,7 @@ int Util::stoui(unsigned int& value, const std::wstring& str, std::size_t* pos, 
     return eCode;
 }
 
-int Util::stoul(unsigned long & value, const std::string& str, std::size_t* pos, int base) noexcept
+int stoul(unsigned long & value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -164,7 +164,7 @@ int Util::stoul(unsigned long & value, const std::string& str, std::size_t* pos,
     return eCode;
 }
 
-int Util::stoul(unsigned long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stoul(unsigned long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -182,7 +182,7 @@ int Util::stoul(unsigned long & value, const std::wstring& str, std::size_t* pos
     return eCode;
 }
 
-int Util::stoull(unsigned long long & value, const std::string& str, std::size_t* pos, int base) noexcept
+int stoull(unsigned long long & value, const std::string& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -200,7 +200,7 @@ int Util::stoull(unsigned long long & value, const std::string& str, std::size_t
     return eCode;
 }
 
-int Util::stoull(unsigned long long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
+int stoull(unsigned long long & value, const std::wstring& str, std::size_t* pos, int base) noexcept
 {
     int eCode = 0;
     try
@@ -218,7 +218,7 @@ int Util::stoull(unsigned long long & value, const std::wstring& str, std::size_
     return eCode;
 }
 
-int Util::stof(float& value, const std::string& str, std::size_t* pos) noexcept
+int stof(float& value, const std::string& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try
@@ -236,7 +236,7 @@ int Util::stof(float& value, const std::string& str, std::size_t* pos) noexcept
     return eCode;
 }
 
-int Util::stof(float& value, const std::wstring& str, std::size_t* pos) noexcept
+int stof(float& value, const std::wstring& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try
@@ -254,7 +254,7 @@ int Util::stof(float& value, const std::wstring& str, std::size_t* pos) noexcept
     return eCode;
 }
 
-int Util::stod(double& value, const std::wstring& str, std::size_t* pos) noexcept
+int stod(double& value, const std::wstring& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try
@@ -272,7 +272,7 @@ int Util::stod(double& value, const std::wstring& str, std::size_t* pos) noexcep
     return eCode;
 }
 
-int Util::stod(double& value, const std::string& str, std::size_t* pos) noexcept
+int stod(double& value, const std::string& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try
@@ -290,7 +290,7 @@ int Util::stod(double& value, const std::string& str, std::size_t* pos) noexcept
     return eCode;
 }
 
-int Util::stold(long double& value, const std::string& str, std::size_t* pos) noexcept
+int stold(long double& value, const std::string& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try
@@ -308,7 +308,7 @@ int Util::stold(long double& value, const std::string& str, std::size_t* pos) no
     return eCode;
 }
 
-int Util::stold(long double& value, const std::wstring& str, std::size_t* pos) noexcept
+int stold(long double& value, const std::wstring& str, std::size_t* pos) noexcept
 {
     int eCode = 0;
     try

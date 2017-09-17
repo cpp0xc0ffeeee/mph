@@ -10,6 +10,7 @@
 #include <string>
 #include <memory>
 #include <utility>
+#include <functional>
 
 #include "Util.hpp"
 #include "basic_string_view.hpp"
@@ -17,12 +18,30 @@
 
 using namespace std;
 
+class Clazz
+{
+public:
+    void pp1()
+    {
+        cout<<1<<endl;
+    }
+
+    void pp1() const
+    {
+        cout<<2<<endl;
+    }
+};
+
 int main()
 {
-    mph::string_view ss{"123"};
-    mph::string_view sss("123456789");
-    using namespace mph::literals;
-    auto str="abc\0\0der"_sv;
-    cout<<str;
+    Clazz clazz;
+    auto f1=mph::bindMFuncConst<
+            void(),
+            Clazz,
+            &Clazz::pp1>(&clazz);
+
+    Clazz* p1=&clazz;
+    const Clazz* p2=p1;
+    f1();
 	return 0;
 }

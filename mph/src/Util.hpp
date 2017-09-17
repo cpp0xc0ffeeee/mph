@@ -18,9 +18,8 @@
 namespace mph
 {
 
-class Util
+namespace detail
 {
-private:
     template<class, class>
     struct MFuncWrapperTypeHelper;
 
@@ -75,80 +74,83 @@ private:
     {
         struct Invalid{};
     };
+}//namespace detail
 
+class Util
+{
 public:
     Util() = delete;
 
-    template<class F, class C, typename MFuncWrapperTypeHelper<F,C>::Type V>
-    static MFuncWrapper<typename MFuncWrapperTypeHelper<F, C>::Type, V>
-    bindMFunc(C* instance) noexcept
-    {
-        return instance;
-    }
+}; //class Util
 
-    template<class F, class C, typename MFuncWrapperTypeHelper<F,C>::ConstType V>
-    static MFuncWrapper<typename MFuncWrapperTypeHelper<F, C>::ConstType, V>
-    bindMFuncConst(const C* instance) noexcept
-    {
-        return instance;
-    }
+template<class F, class C, typename detail::MFuncWrapperTypeHelper<F,C>::Type V>
+MFuncWrapper<typename detail::MFuncWrapperTypeHelper<F, C>::Type, V>
+bindMFunc(C* instance) noexcept
+{
+    return instance;
+}
 
-    static int stoi(int& value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+template<class F, class C, typename detail::MFuncWrapperTypeHelper<F,C>::ConstType V>
+MFuncWrapper<typename detail::MFuncWrapperTypeHelper<F, C>::ConstType, V>
+bindMFuncConst(const C* instance) noexcept
+{
+    return instance;
+}
 
-    static int stoi(int& value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoi(int& value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stol(long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoi(int& value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stol(long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stol(long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoll(long long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stol(long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoll(long long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoll(long long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoui(unsigned int& value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoll(long long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoui(unsigned int& value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoui(unsigned int& value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoul(unsigned long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoui(unsigned int& value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoul(unsigned long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoul(unsigned long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoull(unsigned long long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
+int stoul(unsigned long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stoull(unsigned long long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10)
-            noexcept;
+int stoull(unsigned long long & value, const std::string& str, std::size_t* pos = 0, int base = 10) noexcept;
 
-    static int stof(float& value, const std::string& str, std::size_t* pos = 0) noexcept;
+int stoull(unsigned long long & value, const std::wstring& str, std::size_t* pos = 0, int base = 10)
+        noexcept;
 
-    static int stof(float& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
+int stof(float& value, const std::string& str, std::size_t* pos = 0) noexcept;
 
-    static int stod(double& value, const std::string& str, std::size_t* pos = 0) noexcept;
+int stof(float& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
 
-    static int stod(double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
+int stod(double& value, const std::string& str, std::size_t* pos = 0) noexcept;
 
-    static int stold(long double& value, const std::string& str, std::size_t* pos = 0) noexcept;
+int stod(double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
 
-    static int stold(long double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
+int stold(long double& value, const std::string& str, std::size_t* pos = 0) noexcept;
 
-    template<class T, class... Args>
-    static typename MakeUniqueHelper<T>::Object
-    make_unique( Args&&... args )
-    {
-        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-    }
+int stold(long double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
 
-    template<class T>
-    static typename MakeUniqueHelper<T>::Array
-    make_unique( std::size_t size )
-    {
-        return std::unique_ptr<T>(new typename std::remove_extent<T>::type[size]());
-    }
+template<class T, class... Args>
+typename detail::MakeUniqueHelper<T>::Object
+make_unique( Args&&... args )
+{
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
 
-    template<class T, class ...ARGS>
-    static typename MakeUniqueHelper<T>::Invalid
-    make_unique(ARGS&&...) = delete;
+template<class T>
+typename detail::MakeUniqueHelper<T>::Array
+make_unique( std::size_t size )
+{
+    return std::unique_ptr<T>(new typename std::remove_extent<T>::type[size]());
+}
 
-};
+template<class T, class ...ARGS>
+typename detail::MakeUniqueHelper<T>::Invalid
+make_unique(ARGS&&...) = delete;
 
 } /* namespace mph */
 
