@@ -14,7 +14,6 @@
 #include <memory>
 
 #include "MFuncWrapper.hpp"
-#include "MFuncWrapperTypeHelper.hpp"
 
 namespace mph
 {
@@ -22,6 +21,43 @@ namespace mph
 class Util
 {
 private:
+    template<class, class>
+    struct MFuncWrapperTypeHelper;
+
+    template<class R, class C, class ...ARGS>
+    struct MFuncWrapperTypeHelper<std::function<R(ARGS...)>, C>
+    {
+        using Type=R(C::*)(ARGS...);
+        using ConstType=R(C::*)(ARGS...) const;
+    };
+
+    template<class R, class C, class ...ARGS>
+    struct MFuncWrapperTypeHelper<R(*)(ARGS...), C>
+    {
+        using Type=R(C::*)(ARGS...);
+        using ConstType=R(C::*)(ARGS...) const;
+    };
+
+    template<class R, class C, class ...ARGS>
+    struct MFuncWrapperTypeHelper<R(ARGS...), C>
+    {
+        using Type=R(C::*)(ARGS...);
+        using ConstType=R(C::*)(ARGS...) const;
+    };
+
+    template<class R, class C2, class C, class ...ARGS>
+    struct MFuncWrapperTypeHelper<R(C2::*)(ARGS...), C>
+    {
+        using Type=R(C::*)(ARGS...);
+        using ConstType=R(C::*)(ARGS...) const;
+    };
+
+    template<class R, class C2, class C, class ...ARGS>
+    struct MFuncWrapperTypeHelper<R(C2::*)(ARGS...) const, C>
+    {
+        using Type=R(C::*)(ARGS...);
+        using ConstType=R(C::*)(ARGS...) const;
+    };
     template<class T>
     struct MakeUniqueHelper
     {

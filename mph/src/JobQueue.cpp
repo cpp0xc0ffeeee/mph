@@ -62,7 +62,7 @@ mph::JobQueue::Job JobQueue::waitAJobEx()
     }
     Job job = std::move(mDeque.front());
     mDeque.pop_front();
-    return std::move(job);
+    return job;
 }
 
 mph::JobQueue::Job JobQueue::waitAJob() noexcept
@@ -83,7 +83,7 @@ mph::JobQueue::Job JobQueue::waitAJob() noexcept
     }
     Job job = std::move(mDeque.front());
     mDeque.pop_front();
-    return std::move(job);
+    return job;
 }
 
 void JobQueue::clear() noexcept

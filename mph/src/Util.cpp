@@ -238,7 +238,7 @@ int Util::stof(float& value, const std::string& str, std::size_t* pos) noexcept
 
 int Util::stof(float& value, const std::wstring& str, std::size_t* pos) noexcept
 {
-    int eCode;
+    int eCode = 0;
     try
     {
         value = std::stof(str, pos);
