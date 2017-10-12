@@ -11,37 +11,26 @@
 #include <memory>
 #include <utility>
 #include <functional>
+#include <type_traits>
+#include <chrono>
 
 #include "Util.hpp"
 #include "basic_string_view.hpp"
-
+#include "NotNull.hpp"
+#include "MFuncWHelper.hpp"
+#include "Timer.hpp"
 
 using namespace std;
 
-class Clazz
+void func(bool cancelled)
 {
-public:
-    void pp1()
-    {
-        cout<<1<<endl;
-    }
-
-    void pp1() const
-    {
-        cout<<2<<endl;
-    }
-};
+    cout<<cancelled<<endl;
+}
 
 int main()
 {
-    Clazz clazz;
-    auto f1=mph::bindMFuncConst<
-            void(),
-            Clazz,
-            &Clazz::pp1>(&clazz);
-
-    Clazz* p1=&clazz;
-    const Clazz* p2=p1;
-    f1();
+    mph::Timer<chrono::steady_clock> timer(&func);
+    timer.expiresFromNow( chrono::seconds(2) );
+    timer.cancel();
 	return 0;
 }

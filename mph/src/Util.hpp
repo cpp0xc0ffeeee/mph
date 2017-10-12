@@ -12,13 +12,15 @@
 #include <system_error>
 #include <limits>
 #include <memory>
+#include <chrono>
+#include <type_traits>
 
 #include "MFuncWrapper.hpp"
 
 namespace mph
 {
 
-namespace detail
+namespace details
 {
     template<class, class>
     struct MFuncWrapperTypeHelper;
@@ -83,15 +85,15 @@ public:
 
 }; //class Util
 
-template<class F, class C, typename detail::MFuncWrapperTypeHelper<F,C>::Type V>
-MFuncWrapper<typename detail::MFuncWrapperTypeHelper<F, C>::Type, V>
+template<class F, class C, typename details::MFuncWrapperTypeHelper<F,C>::Type V>
+MFuncWrapper<typename details::MFuncWrapperTypeHelper<F, C>::Type, V>
 bindMFunc(C* instance) noexcept
 {
     return instance;
 }
 
-template<class F, class C, typename detail::MFuncWrapperTypeHelper<F,C>::ConstType V>
-MFuncWrapper<typename detail::MFuncWrapperTypeHelper<F, C>::ConstType, V>
+template<class F, class C, typename details::MFuncWrapperTypeHelper<F,C>::ConstType V>
+MFuncWrapper<typename details::MFuncWrapperTypeHelper<F, C>::ConstType, V>
 bindMFuncConst(const C* instance) noexcept
 {
     return instance;
@@ -135,21 +137,21 @@ int stold(long double& value, const std::string& str, std::size_t* pos = 0) noex
 int stold(long double& value, const std::wstring& str, std::size_t* pos = 0) noexcept;
 
 template<class T, class... Args>
-typename detail::MakeUniqueHelper<T>::Object
+typename details::MakeUniqueHelper<T>::Object
 make_unique( Args&&... args )
 {
     return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 template<class T>
-typename detail::MakeUniqueHelper<T>::Array
+typename details::MakeUniqueHelper<T>::Array
 make_unique( std::size_t size )
 {
     return std::unique_ptr<T>(new typename std::remove_extent<T>::type[size]());
 }
 
 template<class T, class ...ARGS>
-typename detail::MakeUniqueHelper<T>::Invalid
+typename details::MakeUniqueHelper<T>::Invalid
 make_unique(ARGS&&...) = delete;
 
 } /* namespace mph */

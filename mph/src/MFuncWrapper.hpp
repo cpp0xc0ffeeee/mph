@@ -27,6 +27,10 @@ template<class F, F V>
     public:
         MFuncWrapper(std::nullptr_t) = delete;
 
+        constexpr MFuncWrapper(const MFuncWrapper&) noexcept = default;
+
+        constexpr MFuncWrapper(MFuncWrapper&&) noexcept = default;
+
         MFuncWrapper(const C* instance)
                 :mInstance(instance)
         {
@@ -56,6 +60,10 @@ template<class F, F V>
             if(!mInstance)
                 throw std::invalid_argument("");
         }
+
+        constexpr MFuncWrapper(const MFuncWrapper&) noexcept = default;
+
+        constexpr MFuncWrapper(MFuncWrapper&&) noexcept = default;
 
         template<class ...INARGS>
         R operator()(INARGS&&... args)
